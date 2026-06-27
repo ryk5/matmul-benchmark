@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/ryan/Documents/matmul_testing/build/cmake_install.cmake",
+		"/Users/ryan/Documents/matmul_testing/build/src/cpu/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

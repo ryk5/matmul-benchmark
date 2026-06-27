@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(mkdir)",
+      "Exec(./build/src/cpu/cpu_benchmark)",
+      "Exec(python3)",
+      "Exec(cmake)",
+      "Exec(pip install)",
+      "Exec(pip3 install)",
+      "Exec(find)",
+      "Exec(ssh)",
+      "Exec(scp)",
+      "Exec(tar)",
+      "Exec(base64)",
+      "Exec(split)",
+      "Exec(sftp)",
+      "Exec(wc)",
+      "Exec(ls)",
+      "Exec(od)",
+      "Exec(rsync)",
+      "Exec(cat)",
+      "Exec(nc)"
+    ]
+  }
+}
