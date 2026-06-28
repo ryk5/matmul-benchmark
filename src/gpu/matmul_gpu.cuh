@@ -6,25 +6,24 @@
 #include <stdexcept>
 #include <string>
 
-#define CHECK_CUDA(call) \
-    do { \
-        cudaError_t err = call; \
-        if (err != cudaSuccess) { \
-            throw std::runtime_error(std::string("CUDA error: ") + cudaGetErrorString(err) + \
-                                     " at " + __FILE__ + ":" + std::to_string(__LINE__)); \
-        } \
-    } while (0)
-
-#define CHECK_CUBLAS(call) \
-    do { \
-        cublasStatus_t err = call; \
-        if (err != CUBLAS_STATUS_SUCCESS) { \
-            throw std::runtime_error(std::string("cuBLAS error: ") + std::to_string(err) + \
-                                     " at " + __FILE__ + ":" + std::to_string(__LINE__)); \
-        } \
-    } while (0)
-
 namespace matmul::gpu {
+
+inline void check_cuda(cudaError_t err, const char* file, int line) {
+    if (err != cudaSuccess) {
+        throw std::runtime_error(std::string("CUDA error: ") + cudaGetErrorString(err) +
+                                 " at " + file + ":" + std::to_string(line));
+    }
+}
+
+inline void check_cublas(cublasStatus_t err, const char* file, int line) {
+    if (err != CUBLAS_STATUS_SUCCESS) {
+        throw std::runtime_error(std::string("cuBLAS error: ") + std::to_string(err) +
+                                 " at " + file + ":" + std::to_string(line));
+    }
+}
+
+#define CHECK_CUDA(call) check_cuda((call), __FILE__, __LINE__)
+#define CHECK_CUBLAS(call) check_cublas((call), __FILE__, __LINE__)
 
 constexpr int TILE_SIZE = 32;
 
